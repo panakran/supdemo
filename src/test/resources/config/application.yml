@@ -13,12 +13,6 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-    client:
-        enabled: false
-    instance:
-        appname: jhipdemo
-        instanceId: jhipdemo:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
@@ -96,7 +90,7 @@ jhipster:
         authentication:
             jwt:
                 # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-                base64-secret: NTAxZDRkY2NhNzBlZDEyNmM3NzIwYjFmYmM2NTU4MTc3N2UxNWJiYjkzZGQ3NDE2MjViYWExMzY5YmI2NWU0ZjU4MzBhODRmMWU0NzNkZWU3N2NlZjBhMDc0NjQ2MmRiOWU4N2UyMjM2OTEyNWJjOWEyOTRhZTcxN2MyNDEyZDM=
+                base64-secret: NzE4ZDg1NmYzYmRhMjU3NjBkZWZkODgxZjc1ZGUyYmI3ZjRjNDY3Y2U4YTVhMzhhOGNjZGMxMzVmNTVlYjI2NzcyZGJkNDkxNTMyZmYyZWZhZDczMTE4NzY3NjZiMDQ2YjZlNjdhMDdmNTU4NTM5YjUyMGE2YzkwMzIxM2NjMDg=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

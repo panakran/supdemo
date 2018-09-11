@@ -19,13 +19,6 @@ logging:
         com.mycompany.myapp: INFO
         io.github.jhipster: INFO
 
-eureka:
-    instance:
-        prefer-ip-address: true
-    client:
-        service-url:
-            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
-
 spring:
     devtools:
         restart:
@@ -34,16 +27,14 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mariadb://localhost:3306/jhipdemo
-        username: root
+        url: jdbc:h2:mem:jhipdemo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        username: jhipdemo
         password:
         hikari:
             auto-commit: false
-            data-source-properties:
-                cachePrepStmts: true
-                prepStmtCacheSize: 250
-                prepStmtCacheSqlLimit: 2048
-                useServerPrepStmts: true
+    h2:
+        console:
+            enabled: false
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
@@ -64,12 +55,6 @@ spring:
         password:
     thymeleaf:
         cache: true
-    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
-        base-url: http://localhost:9411
-        enabled: false
-        locator:
-            discovery:
-                enabled: true
 
 # ===================================================================
 # To enable SSL in production, generate a certificate using:
@@ -91,7 +76,7 @@ spring:
 #        ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 ,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,TLS_RSA_WITH_CAMELLIA_128_CBC_SHA
 # ===================================================================
 server:
-    port: 8080
+    port: 8081
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
@@ -120,7 +105,7 @@ jhipster:
                 # - In the JHipster Registry (which includes a Spring Cloud Config server)
                 # - In a separate `application-prod.yml` file, in the same folder as your executable WAR file
                 # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable
-                base64-secret: NTAxZDRkY2NhNzBlZDEyNmM3NzIwYjFmYmM2NTU4MTc3N2UxNWJiYjkzZGQ3NDE2MjViYWExMzY5YmI2NWU0ZjU4MzBhODRmMWU0NzNkZWU3N2NlZjBhMDc0NjQ2MmRiOWU4N2UyMjM2OTEyNWJjOWEyOTRhZTcxN2MyNDEyZDM=
+                base64-secret: NzE4ZDg1NmYzYmRhMjU3NjBkZWZkODgxZjc1ZGUyYmI3ZjRjNDY3Y2U4YTVhMzhhOGNjZGMxMzVmNTVlYjI2NzcyZGJkNDkxNTMyZmYyZWZhZDczMTE4NzY3NjZiMDQ2YjZlNjdhMDdmNTU4NTM5YjUyMGE2YzkwMzIxM2NjMDg=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
